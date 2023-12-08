@@ -1,102 +1,48 @@
+import { useEffect, useState } from 'react'
 import ProductsList from '../../components/ProductsList'
-import Game from '../../models/Game'
-import resident from '../../assets/resident.png'
-import zelda from '../../assets/zelda.png'
-import diablo from '../../assets/diablo.png'
+import { Game } from '../Home'
 
-const promocoes: Game[] = [
-  {
-    id: 1,
-    category: 'Acao',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequatur quisquam nisi eveniet',
-    title: 'Resident Evil 4',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: resident
-  },
-  {
-    id: 2,
-    category: 'Acao',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequatur quisquam nisi eveniet',
-    title: 'Zelda',
-    system: 'Windows',
-    infos: ['5%', 'R$ 290,00'],
-    image: zelda
-  },
-  {
-    id: 3,
-    category: 'Acao',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequatur quisquam nisi eveniet',
-    title: 'Diablo 4',
-    system: 'Windows',
-    infos: ['10%', 'R$ 300,00'],
-    image: diablo
-  },
-  {
-    id: 4,
-    category: 'Acao',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequatur quisquam nisi eveniet',
-    title: 'Resident Evil 4',
-    system: 'Windows',
-    infos: ['15%', 'R$ 230,00'],
-    image: resident
-  }
-]
+const Categories = () => {
+  const [gamesAcao, setGamesAcao] = useState<Game[]>([])
+  const [gamesEsportes, setGamesEsportes] = useState<Game[]>([])
+  const [gamesSimulacao, setGamesSimulacao] = useState<Game[]>([])
+  const [gamesLuta, setGamesLuta] = useState<Game[]>([])
+  const [gamesRPG, setGamesRPG] = useState<Game[]>([])
 
-const emBreve: Game[] = [
-  {
-    id: 5,
-    category: 'Acao',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequatur quisquam nisi eveniet',
-    title: 'Resident Evil 4',
-    system: 'PS5',
-    infos: ['10%', 'R$ 250,00'],
-    image: resident
-  },
-  {
-    id: 6,
-    category: 'Acao',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequatur quisquam nisi eveniet',
-    title: 'Zelda',
-    system: 'Nintendo',
-    infos: ['5%', 'R$ 290,00'],
-    image: zelda
-  },
-  {
-    id: 7,
-    category: 'Acao',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequatur quisquam nisi eveniet',
-    title: 'Diablo 4',
-    system: 'Windows',
-    infos: ['10%', 'R$ 300,00'],
-    image: diablo
-  },
-  {
-    id: 8,
-    category: 'Acao',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus consequatur quisquam nisi eveniet',
-    title: 'Resident Evil 4',
-    system: 'PC',
-    infos: ['15%', 'R$ 230,00'],
-    image: resident
-  }
-]
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/eplay/acao')
+      .then((resp) => resp.json())
+      .then((resp) => setGamesAcao(resp))
 
-const Categories = () => (
-  <>
-    <ProductsList games={promocoes} title="RPG" background="gray" />
-    <ProductsList games={emBreve} title="Acao" background="black" />
-    <ProductsList games={promocoes} title="Aventura" background="gray" />
-    <ProductsList games={emBreve} title="FPS" background="black" />
-  </>
-)
+    fetch('https://fake-api-tau.vercel.app/api/eplay/esportes')
+      .then((resp) => resp.json())
+      .then((resp) => setGamesEsportes(resp))
+
+    fetch('https://fake-api-tau.vercel.app/api/eplay/simulacao')
+      .then((resp) => resp.json())
+      .then((resp) => setGamesSimulacao(resp))
+
+    fetch('https://fake-api-tau.vercel.app/api/eplay/luta')
+      .then((resp) => resp.json())
+      .then((resp) => setGamesLuta(resp))
+
+    fetch('https://fake-api-tau.vercel.app/api/eplay/rpg')
+      .then((resp) => resp.json())
+      .then((resp) => setGamesRPG(resp))
+  }, [])
+  return (
+    <>
+      <ProductsList games={gamesAcao} title="Ação" background="gray" />
+      <ProductsList games={gamesEsportes} title="Esportes" background="black" />
+      <ProductsList
+        games={gamesSimulacao}
+        title="Simulação"
+        background="gray"
+      />
+      <ProductsList games={gamesLuta} title="Luta" background="black" />
+      <ProductsList games={gamesRPG} title="RPG" background="gray" />
+    </>
+  )
+}
 
 export default Categories
