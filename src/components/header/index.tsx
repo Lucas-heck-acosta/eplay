@@ -50,8 +50,7 @@ const Header = () => {
           </nav>
         </div>
         <CartButton onClick={openCart}>
-          {items.length}
-          <span> - produtos(s)</span>
+          <span>{items.length} - produtos(s)</span>
           <img src={carrinho} alt="Carrinho" />
         </CartButton>
       </HeaderRow>
