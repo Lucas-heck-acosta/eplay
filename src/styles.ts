@@ -3,12 +3,12 @@ export const breakpoints = {
   desktop: '1024px',
   tablet: '768px'
 }
-export const cores = {
-  branca: '#EEE',
-  preto: '#111',
-  cinza: '#333',
-  cinzaClaro: '#A3A3A3',
-  verde: '#10AC84'
+export const colors = {
+  white: '#EEE',
+  black: '#111',
+  gray: '#333',
+  lightGray: '#A3A3A3',
+  green: '#10AC84'
 }
 
 export const GlobalCss = createGlobalStyle`
@@ -21,8 +21,8 @@ export const GlobalCss = createGlobalStyle`
  }
 
  body {
-  background-color: ${cores.preto};
-  color: ${cores.branca};
+  background-color: ${colors.black};
+  color: ${colors.white};
   padding-top: 40px;
  }
 .container {
