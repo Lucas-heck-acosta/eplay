@@ -7,7 +7,7 @@ export type Props = {
 
 const Section = ({ title, background, children }: Props) => (
   <S.Container background={background}>
-    <div className="S.container">
+    <div className="container">
       <S.Title>{title}</S.Title>
       {children}
     </div>

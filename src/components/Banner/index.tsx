@@ -5,12 +5,13 @@ import Button from '../Button'
 
 import { useGetFearturedGameQuery } from '../../services/api'
 import { parseToBRL } from '../../utils'
+import Loader from '../Loader'
 
 const Banner = () => {
   const { data: game } = useGetFearturedGameQuery()
 
   if (!game) {
-    return <h3>Carregando...</h3>
+    return <Loader />
   }
   return (
     <S.Image style={{ backgroundImage: `url(${game.media.cover})` }}>
